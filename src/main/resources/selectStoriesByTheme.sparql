@@ -1,0 +1,7 @@
+PREFIX theme: <https://w3id.org/spice/SON/theme/>
+prefix earmark: <http://www.essepuntato.it/2008/12/earmark#>
+
+select distinct ?storyContent where {
+  ?story earmark:hasContent ?storyContent .
+  ?story theme:hasTheme ?theme .
+}

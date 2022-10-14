@@ -1,0 +1,10 @@
+PREFIX theme: <https://w3id.org/spice/SON/theme/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix earmark: <http://www.essepuntato.it/2008/12/earmark#>
+
+select distinct ?t ?tLabel where {
+  ?s theme:isTopicallyAssociatedWith  ?o .
+  ?o theme:hasTheme ?t .
+  ?s theme:hasTheme ?t .
+  ?t rdfs:label ?tLabel .
+} ORDER BY ?tLabel
