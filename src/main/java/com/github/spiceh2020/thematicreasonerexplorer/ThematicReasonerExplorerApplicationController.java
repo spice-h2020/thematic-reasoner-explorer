@@ -46,22 +46,4 @@ public class ThematicReasonerExplorerApplicationController {
         return arr.toString();
     }
 
-    @GetMapping(value = "/")
-    public String index() throws TemplateException, IOException {
-
-        InputStream is = getClass().getClassLoader().getResourceAsStream("selectThemes.sparql");
-        String selectThemes = IOUtils.toString(is, "UTF-8");
-
-        List<Theme> themes = new ArrayList<>();
-        try (RDFConnection conn = RDFConnection.connect(endpoint)) {
-            conn.querySelect(selectThemes, (qs) -> {
-                String topicURI = qs.getResource("t").getURI();
-                String topicLabel = qs.getLiteral("tLabel").getValue().toString();
-                logger.trace("Topic URI {}, {}", topicURI, topicLabel);
-                themes.add(new Theme(topicURI,topicLabel));
-            });
-        }
-
-        return PageBuilder.getInstance().getPage(Map.of("themes", themes));
-    }
 }
