@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.jena.rdfconnection.RDFConnection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,8 @@ import java.util.Objects;
 public class ExplorerController {
 
     private static final Logger logger = LoggerFactory.getLogger(ExplorerController.class);
-    private static final String endpoint = "http://localhost:3030/dmh2/query";
+    @Value("${endpoint}")
+    private  String endpoint;
 
     @GetMapping(value = "/explorer")
     public void explorer(Model model) throws TemplateException, IOException {

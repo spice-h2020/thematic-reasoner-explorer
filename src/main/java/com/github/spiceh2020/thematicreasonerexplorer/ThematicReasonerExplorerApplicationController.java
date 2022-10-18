@@ -12,6 +12,7 @@ import org.apache.jena.rdfconnection.RDFConnection;
 import org.apache.jena.rdfconnection.RDFConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,8 +26,8 @@ import java.util.Map;
 
 @RestController
 public class ThematicReasonerExplorerApplicationController {
-
-    private static String endpoint = "http://localhost:3030/dmh2/query";
+    @Value("${endpoint}")
+    private  String endpoint;
     private static  final Logger logger = LoggerFactory.getLogger(ThematicReasonerExplorerApplicationController.class);
 
     @GetMapping(value = "/getTopicallyAssociatedStories", produces = "application/json")
