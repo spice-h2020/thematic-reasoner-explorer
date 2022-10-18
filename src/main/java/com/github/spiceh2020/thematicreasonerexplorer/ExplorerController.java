@@ -25,7 +25,7 @@ public class ExplorerController {
     private  String endpoint;
 
     @GetMapping(value = "/explorer")
-    public void explorer(Model model) throws TemplateException, IOException {
+    public void explorer(Model model) throws  IOException {
 
         String selectThemes = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("selectThemes.sparql")), StandardCharsets.UTF_8);
 
@@ -41,20 +41,6 @@ public class ExplorerController {
 
         model.addAttribute("themes", themes);
 
-//        if (theme != null) {
-//            System.out.println("request " + theme);
-//            String selectStoriesByTheme = IOUtils.toString(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("selectStoriesByTheme.sparql")), StandardCharsets.UTF_8);
-//            ParameterizedSparqlString pss = new ParameterizedSparqlString(selectStoriesByTheme);
-//            pss.setIri("theme", theme);
-//
-//            List<Story> arr = new ArrayList<>();
-//            AtomicInteger ai = new AtomicInteger(0);
-//            try (RDFConnection conn = RDFConnection.connect(endpoint)) {
-//                conn.querySelect(pss.asQuery(), (qs) -> arr.add(new Story(qs.getLiteral("storyContent").getValue().toString(), "Story #" + ai.incrementAndGet())));
-//            }
-//            model.addAttribute("stories", arr);
-//
-//        }
 
 
     }
