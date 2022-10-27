@@ -1,0 +1,4 @@
+docker network create tr_explorer_network
+docker network connect tr_explorer_network fuseki
+docker network connect tr_explorer_network tr_explorer
+docker network inspect tr_explorer_network

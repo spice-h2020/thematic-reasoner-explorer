@@ -1,12 +1,12 @@
 FROM maven:3.8.6-openjdk-11
 
-RUN cd /opt && \
-	git clone https://github.com/luigi-asprino/lsd.git && \
-    cd lsd && \
-    mvn clean package
+RUN mkdir /opt/tr_explorer
 
-WORKDIR /opt/lsd
+COPY target/thematic-reasoner-explorer-0.0.1-SNAPSHOT.jar /opt/tr_explorer
+COPY application.properties /opt/tr_explorer
+
+WORKDIR /opt/tr_explorer
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/opt/lsd/target/lsd-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/opt/tr_explorer/thematic-reasoner-explorer-0.0.1-SNAPSHOT.jar"]
