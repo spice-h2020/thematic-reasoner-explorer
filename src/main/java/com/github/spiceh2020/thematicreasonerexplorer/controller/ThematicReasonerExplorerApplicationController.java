@@ -47,8 +47,12 @@ public class ThematicReasonerExplorerApplicationController {
 
 
     @GetMapping(value = "/sparql")
-    @PostMapping(value = "/sparql")
     public String getEndpoint(@RequestParam(value = "query") String query) {
+        return new RestTemplate().getForObject(endpoint + "?query={query}", String.class, query);
+    }
+
+    @PostMapping(value = "/sparql")
+    public String postEndpoint(@RequestParam(value = "query") String query) {
         return new RestTemplate().getForObject(endpoint + "?query={query}", String.class, query);
     }
 

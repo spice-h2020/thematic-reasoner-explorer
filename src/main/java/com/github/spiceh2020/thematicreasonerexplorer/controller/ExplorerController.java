@@ -28,6 +28,9 @@ public class ExplorerController {
     @Value("${endpoint}")
     private String endpoint;
 
+    @Value("${public.endpoint}")
+    private String publicEndpoint;
+
     @GetMapping(value = "/explorer")
     public void explorer(Model model) throws IOException {
 
@@ -49,8 +52,8 @@ public class ExplorerController {
 
     @GetMapping(value = "/yasgui")
     public void yasgui(Model model) throws IOException {
-        String publicEndpoint = "http://" +InetAddress.getLoopbackAddress().getHostName() + ":" + environment.getProperty("local.server.port") + "/sparql";
-        System.out.println(publicEndpoint);
+//        String publicEndpoint = "http://" +InetAddress.getLoopbackAddress().getHostName() + ":" + environment.getProperty("local.server.port") + "/sparql";
+//        System.out.println(publicEndpoint);
         model.addAttribute("endpoint", publicEndpoint);
     }
 
